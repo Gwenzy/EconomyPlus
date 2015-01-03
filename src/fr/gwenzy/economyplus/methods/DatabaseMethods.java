@@ -30,11 +30,12 @@ public class DatabaseMethods {
 			try
 			{
 				Class.forName("com.mysql.jdbc.Driver");
-				c = DriverManager.getConnection("jdbc:mysql://"+EconomyPlus.config.getString("mysql.host")+":"
-				+ EconomyPlus.config.getString("mysql.port")+"/"
-				+ EconomyPlus.config.getString("mysql.db_name"), 
-				EconomyPlus.config.getString("mysql.user"),
-				EconomyPlus.config.getString("mysql.pass"));
+				String url = "jdbc:mysql://"+EconomyPlus.config.getString("mysql.host")+":"
+						+ EconomyPlus.config.getString("mysql.port")+"/"
+						+ EconomyPlus.config.getString("mysql.db_name");
+				EconomyPlus.log.info(url);
+				c = DriverManager.getConnection(url,EconomyPlus.config.getString("mysql.user"), EconomyPlus.config.getString("mysql.pass"));
+				
 				EconomyPlus.log.info("[EconomyPlus] "+EconomyPlus.langFile.getString("basic.connectedMySQL"));
 			}
 			catch(Exception e)
