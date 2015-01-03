@@ -1,7 +1,6 @@
 package fr.gwenzy.economyplus.methods;
 
 import java.io.File;
-import java.io.IOException;
 
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;

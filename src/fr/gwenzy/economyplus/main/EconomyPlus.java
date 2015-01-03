@@ -44,17 +44,19 @@ public class EconomyPlus extends JavaPlugin
 			enabled = false;
 			s.getPluginManager().disablePlugin(this);
 		}
-		else if(DatabaseMethods.getConnection(config.getString("dbMethod"))==null)
+		else
+		{
+			langFile = YamlConfiguration.loadConfiguration(langF);
+
+		}
+		if(DatabaseMethods.getConnection(config.getString("dbMethod"))==null)
 		{
 			Command.broadcastCommandMessage(s.getConsoleSender(), ChatColor.RED + "[EconomyPlus] Error when trying to connect to database, please check your config.yml. Plugin stopped.");
 			enabled = false;
 			s.getPluginManager().disablePlugin(this);
 		}
-		else
-		{
-			langFile = YamlConfiguration.loadConfiguration(langF);
+		
 		log.info("[EconomyPlus] "+langFile.getString("basic.enabled"));
-		}
 	}
 	
 	@Override 
