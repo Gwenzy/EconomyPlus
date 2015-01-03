@@ -1,0 +1,11 @@
+name: EconomyPlus
+version: 1.0
+author: Gwenzy
+main: fr.gwenzy.economyplus.main.EconomyPlus
+commands:
+    pay:
+        usage: /pay <Player> <Amount>
+        description: Give <Amount> money to <Player>
+    money:
+        usage: /money
+        description: Returns how many money you have on you

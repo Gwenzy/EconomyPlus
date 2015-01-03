@@ -1,0 +1,20 @@
+#Database Configuration
+dbMethod: sqlite #sqlite or mysql
+
+#MySQL Configuration
+mysql: 
+    host: 
+    user: 
+    pass: 
+    port: 
+    db_name: 
+
+#SQLite Configuration
+sqlite: 
+    db_name: economyplus.db
+
+#Plugin configuration
+basic: 
+    bankname: EnconomyPlusBank
+    moneyname: PO
+    lang: en
