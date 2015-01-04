@@ -23,6 +23,11 @@ public class LanguageMethods {
 				en.set("basic.connectedMySQL", "Connected successfully to the MySQL Database");
 				en.set("basic.SQLSuccess", "SQL requests successfully executed");
 				en.set("account.created", "An account have been created for %p%");
+				en.set("money.onPocket", "You have %nb% %g% in your pocket !");
+				en.set("money.onAccount", "You have %nb% %g% in your pocket !");
+				en.set("error.sqlMoneyPocket", "An error has occurred while trying to show money in pocket");
+				
+				
 				en.save(lang);
 			}
 		
