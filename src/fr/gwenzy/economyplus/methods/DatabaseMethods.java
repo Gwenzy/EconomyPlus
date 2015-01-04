@@ -46,14 +46,14 @@ public class DatabaseMethods {
 		try
 		{
 			Statement state = c.createStatement();
-			state.executeUpdate("CREATE TABLE IF NOT EXISTS `economyplus_players` (  `id` int(10) NOT NULL PRIMARY KEY,  `pseudo` varchar(20) NOT NULL,  `onAccount` int(20) NOT NULL,  `onPocket` int(20) NOT NULL)");
+			state.executeUpdate("CREATE TABLE IF NOT EXISTS `economyplus_players` (`id`	INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,`pseudo`	varchar(20) NOT NULL,`onAccount`	int(20) NOT NULL,`onPocket`	int(20) NOT NULL);");
 
-			c.close();
-			
 			EconomyPlus.log.info("[EconomyPlus] "+EconomyPlus.langFile.getString("basic.SQLSuccess"));
 		}
 		catch(Exception e){e.printStackTrace();}
 		
 		return c;
 	}
+	
+	
 }

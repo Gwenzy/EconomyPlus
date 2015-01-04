@@ -22,6 +22,7 @@ public class LanguageMethods {
 				en.set("basic.connectedSQLite", "Connected successfully to the SQLite Database");
 				en.set("basic.connectedMySQL", "Connected successfully to the MySQL Database");
 				en.set("basic.SQLSuccess", "SQL requests successfully executed");
+				en.set("account.created", "An account have been created for %p%");
 				en.save(lang);
 			}
 		

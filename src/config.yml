@@ -18,3 +18,4 @@ basic:
     bankname: EnconomyPlusBank
     moneyname: PO
     lang: en
+    moneyonfirstlogin: 50
