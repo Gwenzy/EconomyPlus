@@ -1,6 +1,7 @@
 package fr.gwenzy.economyplus.main;
 
 import java.io.File;
+import java.sql.SQLException;
 import java.util.logging.Logger;
 
 import org.bukkit.Bukkit;
@@ -60,13 +61,6 @@ public class EconomyPlus extends JavaPlugin
 			langFile = YamlConfiguration.loadConfiguration(langF);
 
 		}
-		//DB Check
-		if(DatabaseMethods.getConnection(dbMethod)==null)
-		{
-			Command.broadcastCommandMessage(s.getConsoleSender(), ChatColor.RED + "[EconomyPlus] Error when trying to connect to database, please check your config.yml. Plugin stopped.");
-			enabled = false;
-			s.getPluginManager().disablePlugin(this);
-		}
 		
 		//Commands
 		getCommand("money").setExecutor(new MoneyCommand());
@@ -75,6 +69,24 @@ public class EconomyPlus extends JavaPlugin
 		
 		//Listeners
 		s.getPluginManager().registerEvents(new FirstJoinListener(), this);
+		
+		if(DatabaseMethods.getConnection(dbMethod))
+		{
+			try {
+				DatabaseMethods.executeMyUpdate("CREATE TABLE IF NOT EXISTS `economyplus_players` (`id`	INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,`pseudo`	varchar(20) NOT NULL,`onAccount`	int(20) NOT NULL,`onPocket`	int(20) NOT NULL);");
+				DatabaseMethods.disconnect();
+			} catch (SQLException e) {}
+			
+
+		}
+		else
+		{
+
+			Command.broadcastCommandMessage(s.getConsoleSender(), ChatColor.RED + "[EconomyPlus] Error when trying to connect to database, please check your config.yml. Plugin stopped.");
+			enabled = false;
+			s.getPluginManager().disablePlugin(this);
+		}
+		
 	}
 	
 	@Override 
