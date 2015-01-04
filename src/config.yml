@@ -15,7 +15,27 @@ sqlite:
 
 #Plugin configuration
 basic: 
-    bankname: EnconomyPlusBank
+    bankname: EconomyPlus
     moneyname: PO
     lang: en
     moneyonfirstlogin: 50
+#Signs (You can color your texts with color codes Ex:&a)
+signs:
+    line1color: &a
+    put:
+        detector: put
+        line2: 'Put money'
+        line3: null
+        line4: null
+    take:
+        detector: take
+        line2: 'Get money'
+        line3: null
+        line4: null
+    see:
+        detector: see
+        line2: 'See money'
+        line3: null
+        line4: null
+
+        

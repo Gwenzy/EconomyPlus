@@ -15,6 +15,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import fr.gwenzy.economyplus.commands.MoneyCommand;
 import fr.gwenzy.economyplus.commands.PayCommand;
 import fr.gwenzy.economyplus.listeners.FirstJoinListener;
+import fr.gwenzy.economyplus.listeners.ModifySign;
 import fr.gwenzy.economyplus.methods.DatabaseMethods;
 import fr.gwenzy.economyplus.methods.LanguageMethods;
 
@@ -62,6 +63,12 @@ public class EconomyPlus extends JavaPlugin
 
 		}
 		
+		if(bankName.length()>14)
+		{
+			Command.broadcastCommandMessage(s.getConsoleSender(), ChatColor.RED + "[EconomyPlus] Error : The bank name must contains maximum 14 characters. Plugin stopped.");
+			enabled = false;
+			s.getPluginManager().disablePlugin(this);
+		}
 		//Commands
 		getCommand("money").setExecutor(new MoneyCommand());
 		getCommand("pay").setExecutor(new PayCommand());
@@ -69,6 +76,7 @@ public class EconomyPlus extends JavaPlugin
 		
 		//Listeners
 		s.getPluginManager().registerEvents(new FirstJoinListener(), this);
+		s.getPluginManager().registerEvents(new ModifySign(), this);
 		
 		if(DatabaseMethods.getConnection(dbMethod))
 		{
