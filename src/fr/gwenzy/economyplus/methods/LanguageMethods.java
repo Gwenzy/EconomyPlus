@@ -27,7 +27,7 @@ public class LanguageMethods {
 				en.set("basic.SQLSuccess", "SQL requests successfully executed");
 				en.set("account.created", "An account have been created for %p%");
 				en.set("money.onPocket", "You have %nb% %g% in your pocket !");
-				en.set("money.onAccount", "You have %nb% %g% in your pocket !");
+				en.set("money.onAccount", "You have %nb% %g% on your account !");
 				en.set("error.sqlGetMoney", "An error has occurred while trying to get money of player");
 				en.set("error.sqlSetMoney", "An error has occurred while trying to set money of player");
 				en.set("error.console", "You must be a player to do that");

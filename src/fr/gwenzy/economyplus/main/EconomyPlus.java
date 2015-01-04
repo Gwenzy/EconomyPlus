@@ -14,6 +14,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import fr.gwenzy.economyplus.commands.MoneyCommand;
 import fr.gwenzy.economyplus.commands.PayCommand;
+import fr.gwenzy.economyplus.listeners.ClickSignListener;
 import fr.gwenzy.economyplus.listeners.FirstJoinListener;
 import fr.gwenzy.economyplus.listeners.ModifySign;
 import fr.gwenzy.economyplus.methods.DatabaseMethods;
@@ -77,6 +78,7 @@ public class EconomyPlus extends JavaPlugin
 		//Listeners
 		s.getPluginManager().registerEvents(new FirstJoinListener(), this);
 		s.getPluginManager().registerEvents(new ModifySign(), this);
+		s.getPluginManager().registerEvents(new ClickSignListener(), this);
 		
 		if(DatabaseMethods.getConnection(dbMethod))
 		{
