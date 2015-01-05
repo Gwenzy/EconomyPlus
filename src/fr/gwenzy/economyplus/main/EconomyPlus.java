@@ -12,8 +12,10 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import fr.gwenzy.economyplus.commands.BankCommand;
 import fr.gwenzy.economyplus.commands.MoneyCommand;
 import fr.gwenzy.economyplus.commands.PayCommand;
+import fr.gwenzy.economyplus.listeners.ChatListener;
 import fr.gwenzy.economyplus.listeners.ClickSignListener;
 import fr.gwenzy.economyplus.listeners.FirstJoinListener;
 import fr.gwenzy.economyplus.listeners.ModifySign;
@@ -31,6 +33,7 @@ public class EconomyPlus extends JavaPlugin
 	public static FileConfiguration langFile;
 	public static FileConfiguration config;
 	public boolean enabled = true;
+	public static String encoding;
 	@Override
 	public void onEnable()
 	{
@@ -43,6 +46,7 @@ public class EconomyPlus extends JavaPlugin
 		lang = config.getString("basic.lang");
 		bankName = config.getString("basic.bankname");
 		dbMethod = config.getString("dbMethod");
+
 		//Folders
 		new File("plugins/EconomyPlus/").mkdir();
 		new File("plugins/EconomyPlus/langs/").mkdir();
@@ -63,7 +67,8 @@ public class EconomyPlus extends JavaPlugin
 			langFile = YamlConfiguration.loadConfiguration(langF);
 
 		}
-		
+		encoding = langFile.getString("basic.encoding");
+
 		if(bankName.length()>14)
 		{
 			Command.broadcastCommandMessage(s.getConsoleSender(), ChatColor.RED + "[EconomyPlus] Error : The bank name must contains maximum 14 characters. Plugin stopped.");
@@ -73,12 +78,17 @@ public class EconomyPlus extends JavaPlugin
 		//Commands
 		getCommand("money").setExecutor(new MoneyCommand());
 		getCommand("pay").setExecutor(new PayCommand());
-		log.info("[EconomyPlus] "+langFile.getString("basic.enabled"));
+		getCommand("bank").setExecutor(new BankCommand(this));
+		try {
+			log.info(new String(("[EconomyPlus] "+langFile.getString("basic.enabled")).getBytes(), encoding));
+		} catch (Exception e1) {
+		}
 		
 		//Listeners
-		s.getPluginManager().registerEvents(new FirstJoinListener(), this);
+		s.getPluginManager().registerEvents(new FirstJoinListener(this), this);
 		s.getPluginManager().registerEvents(new ModifySign(), this);
-		s.getPluginManager().registerEvents(new ClickSignListener(), this);
+		s.getPluginManager().registerEvents(new ClickSignListener(this), this);
+		s.getPluginManager().registerEvents(new ChatListener(this), this);
 		
 		if(DatabaseMethods.getConnection(dbMethod))
 		{
@@ -97,6 +107,14 @@ public class EconomyPlus extends JavaPlugin
 			s.getPluginManager().disablePlugin(this);
 		}
 		
+		try {
+			log.info("[EconomyPlus] Test Encoding");
+			new String("EncodingTest".getBytes(), encoding);
+			log.info("[EconomtPlus] Encoding OK");
+		} catch (Exception e) {
+			Command.broadcastCommandMessage(s.getConsoleSender(), ChatColor.RED + "[EconomyPlus] Error with the encoding, please chech config.yml. Plugin stopped.");
+			enabled = false;
+			s.getPluginManager().disablePlugin(this);}
 	}
 	
 	@Override 

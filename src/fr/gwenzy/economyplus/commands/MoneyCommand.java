@@ -1,5 +1,7 @@
 package fr.gwenzy.economyplus.commands;
 
+import java.io.UnsupportedEncodingException;
+
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -21,7 +23,12 @@ public class MoneyCommand implements CommandExecutor
 		{
 			Player p = (Player) sender;
 				int money = CashMethods.getMoneyPocket(p.getName());
-				p.sendMessage(ChatColor.GOLD+"["+EconomyPlus.bankName+"] "+EconomyPlus.langFile.getString("money.onPocket").replaceAll("%nb%", String.valueOf(money)).replaceAll("%g%", EconomyPlus.moneyName));
+				try {
+					p.sendMessage(ChatColor.GOLD+"["+new String(EconomyPlus.bankName.getBytes(), EconomyPlus.encoding)+"] "+new String(EconomyPlus.langFile.getString("money.onPocket").replaceAll("%nb%", String.valueOf(money)).replaceAll("%g%", EconomyPlus.moneyName).getBytes(), EconomyPlus.encoding));
+				} catch (UnsupportedEncodingException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				
 			
 		}

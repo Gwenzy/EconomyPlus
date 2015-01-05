@@ -9,3 +9,6 @@ commands:
     money:
         usage: /money
         description: Returns how many money you have on you
+    bank:
+        usage: /bank <Argument>
+        description: Do an admin action
