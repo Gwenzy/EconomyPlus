@@ -67,7 +67,7 @@ public class EconomyPlus extends JavaPlugin
 			langFile = YamlConfiguration.loadConfiguration(langF);
 
 		}
-		encoding = langFile.getString("basic.encoding");
+		encoding = config.getString("basic.encoding");
 
 		if(bankName.length()>14)
 		{

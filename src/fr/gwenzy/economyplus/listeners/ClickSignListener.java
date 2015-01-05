@@ -33,7 +33,7 @@ public class ClickSignListener implements Listener
 				Sign sign = (Sign) event.getClickedBlock().getState();
 				if(sign.getLine(0).equalsIgnoreCase(EconomyPlus.config.getString("signs.line1color").replace("&", "§")+"["+EconomyPlus.bankName+"]"))
 				{
-
+					
 					if(sign.getLine(1)!=null && sign.getLine(1).equals(EconomyPlus.config.getString("signs.put.line2")))
 					{
 						event.getPlayer().sendMessage(ChatColor.GOLD + new String(("["+EconomyPlus.bankName+"] ").getBytes(), EconomyPlus.encoding)+new String(EconomyPlus.langFile.getString("account.put").getBytes(),"UTF-8"));
@@ -51,6 +51,7 @@ public class ClickSignListener implements Listener
 						String onAccount = String.valueOf(CashMethods.getMoneyAccount(event.getPlayer().getName()));
 						event.getPlayer().sendMessage(ChatColor.GOLD + new String(("["+EconomyPlus.bankName+"] "+EconomyPlus.langFile.getString("money.onAccount").replaceAll("%g%", EconomyPlus.moneyName).replaceAll("%nb%", onAccount)).getBytes(), EconomyPlus.encoding));
 					}
+					
 				}
 			}
 		}

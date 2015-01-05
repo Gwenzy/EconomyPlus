@@ -19,9 +19,10 @@ basic:
     moneyname: PO
     lang: en
     moneyonfirstlogin: 50
+    encoding: UTF-8
 #Signs (You can color your texts with color codes Ex:&a)
 signs:
-    line1color: &a
+    line1color: '&a'
     put:
         detector: put
         line2: 'Put money'

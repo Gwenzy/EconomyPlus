@@ -16,7 +16,7 @@ public class ModifySign implements Listener {
 		
 		if(event.getLine(0).equalsIgnoreCase(EconomyPlus.bankName))
 		{		
-			if(event.getPlayer().hasPermission("economyplus.createsigns"))
+			if(event.getPlayer().hasPermission("EconomyPlus.signs"))
 			{		
 				if(event.getLine(1)!=null)
 				{		
